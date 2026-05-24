@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>与谭平山对话 · 岭师红色校友</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  background: #f5ede6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 12px 40px;
+}
+
+.page-title {
+  font-size: 13px;
+  color: #8B4A2F;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  opacity: 0.8;
+}
+
+.root {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 32px rgba(107,26,26,0.10);
+  min-height: 600px;
+}
+
+.header {
+  background: linear-gradient(135deg, #6B1A1A 0%, #8B2525 100%);
+  color: #fff;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.avatar {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 600; color: #fde8cc; flex-shrink: 0;
+}
+.hinfo { flex: 1; }
+.hname { font-size: 19px; font-weight: 600; letter-spacing: 3px; }
+.hsub { font-size: 12px; opacity: 0.70; margin-top: 3px; letter-spacing: 0.5px; }
+.badge {
+  font-size: 11px; padding: 4px 11px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px; color: #fde8cc;
+  display: flex; align-items: center; gap: 5px;
+  white-space: nowrap;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #5dca85; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #f0e8e0;
+  background: #fdf8f5;
+  flex-shrink: 0;
+}
+.tab {
+  flex: 1; padding: 11px 8px; font-size: 13px; cursor: pointer;
+  border: none; background: none; color: #999;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s; letter-spacing: 0.5px;
+}
+.tab.active { color: #6B1A1A; border-bottom-color: #6B1A1A; background: #fff; font-weight: 600; }
+
+.panel { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+.panel.active { display: flex; }
+
+.msgs {
+  flex: 1; overflow-y: auto; padding: 18px 16px;
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 300px;
+  background: #fdf8f5;
+}
+.msg { display: flex; gap: 10px; align-items: flex-start; }
+.msg.user { flex-direction: row-reverse; }
+.mav {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600;
+}
+.mav.ai { background: #9B2D2D; color: #fde8cc; }
+.mav.user { background: #e8f0fb; color: #3a6abf; }
+.mbubble {
+  max-width: 78%; padding: 11px 15px;
+  font-size: 14px; line-height: 1.75;
+}
+.msg.ai .mbubble {
+  background: #fff;
+  color: #2c1a0e;
+  border-radius: 4px 14px 14px 14px;
+  border: 1px solid #f0e8e0;
+  box-shadow: 0 1px 4px rgba(107,26,26,0.06);
+}
+.msg.user .mbubble {
+  background: #6B1A1A; color: #fff;
+  border-radius: 14px 4px 14px 14px;
+}
+.mmeta { font-size: 11px; color: #bbb; margin-top: 4px; }
+
+.quickbtns {
+  padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 6px;
+  border-top: 1px solid #f0e8e0;
+  background: #fdf8f5; flex-shrink: 0;
+}
+.qbtn {
+  font-size: 12px; padding: 5px 12px;
+  border: 1px solid #d4b8a8;
+  border-radius: 20px; cursor: pointer;
+  background: #fff; color: #8B4A2F;
+  transition: all 0.15s;
+}
+.qbtn:hover { background: #6B1A1A; color: #fff; border-color: #6B1A1A; }
+.qbtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.inputrow {
+  padding: 12px 14px; display: flex; gap: 8px; align-items: flex-end;
+  border-top: 1px solid #f0e8e0;
+  background: #fff; flex-shrink: 0;
+}
+.inputrow textarea {
+  flex: 1; resize: none;
+  border: 1px solid #e0cfc4;
+  border-radius: 10px; padding: 9px 13px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+  background: #fdf8f5; color: #2c1a0e;
+  min-height: 40px; max-height: 100px; line-height: 1.5;
+  outline: none; transition: border-color 0.15s;
+}
+.inputrow textarea:focus { border-color: #9B2D2D; }
+.sendbtn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: #6B1A1A; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: opacity 0.15s;
+}
+.sendbtn:hover { opacity: 0.85; }
+.sendbtn:disabled { opacity: 0.4; cursor: not-allowed; }
+.sendbtn svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.infopanel {
+  padding: 16px; overflow-y: auto; flex: 1;
+  display: flex; flex-direction: column; gap: 12px;
+  background: #fdf8f5;
+}
+.icard {
+  border: 1px solid #f0e8e0;
+  border-radius: 12px; padding: 14px 16px;
+  background: #fff;
+}
+.ictitle { font-size: 13px; font-weight: 600; color: #6B1A1A; margin-bottom: 9px; display: flex; align-items: center; gap: 6px; }
+.ictitle svg { width: 16px; height: 16px; stroke: #6B1A1A; fill: none; stroke-width: 2; flex-shrink: 0; }
+.icard p { font-size: 13px; line-height: 1.8; color: #5a4030; }
+.tl { display: flex; gap: 10px; margin-bottom: 8px; }
+.tlyear { font-size: 12px; font-weight: 600; color: #8B2525; min-width: 42px; padding-top: 1px; }
+.tltext { font-size: 13px; color: #5a4030; line-height: 1.65; }
+.tag { display: inline-block; font-size: 11px; padding: 3px 9px; background: #fdf0eb; color: #8B2525; border-radius: 10px; margin: 2px; border: 1px solid #f0d8cc; }
+.kpblock { padding: 9px 13px; margin-bottom: 8px; border-left: 3px solid #8B2525; background: #fdf8f5; border-radius: 0 8px 8px 0; }
+.kptitle { font-size: 13px; font-weight: 600; color: #6B1A1A; }
+.kpdesc { font-size: 12px; color: #7a5040; margin-top: 3px; line-height: 1.65; }
+
+.typing { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
+.typing span { width: 7px; height: 7px; border-radius: 50%; background: #9B2D2D; animation: bounce 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-7px)} }
+
+.footnote {
+  text-align: center; font-size: 11px; color: #bbb;
+  padding: 8px; border-top: 1px solid #f0e8e0;
+  background: #fff; flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<p class="page-title">岭南师范学院 · 马克思主义基本原理 · 课程实践作品</p>
+
+<div class="root">
+  <div class="header">
+    <div class="avatar">谭</div>
+    <div class="hinfo">
+      <div class="hname">与谭平山对话</div>
+      <div class="hsub">广东高明人 · 中国共产党创始人之一 · 岭师红色校友</div>
+    </div>
+    <div class="badge"><span class="dot"></span>AI 驱动</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="sw('chat')">💬 对话</button>
+    <button class="tab" onclick="sw('info')">👤 人物档案</button>
+    <button class="tab" onclick="sw('course')">📖 课程关联</button>
+  </div>
+
+  <div class="panel active" id="p-chat">
+    <div class="msgs" id="msgs">
+      <div class="msg ai">
+        <div class="mav ai">谭</div>
+        <div>
+          <div class="mbubble">同志，你好！我是谭平山，广东高明人，1887年生。<br><br>我曾就读于两广优级师范学堂，也就是今天岭南师范学院的前身，后赴日留学，接触马克思主义，归国后投身革命，参与创建中国共产党广东党组织，推动了第一次国共合作。<br><br>有什么想问我的？革命历程也好，理想信念也好，对今日青年的期望也好，我都愿意倾心相谈。</div>
+          <div class="mmeta">谭平山 · 刚刚</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quickbtns" id="qbtns">
+      <button class="qbtn" onclick="sq('你为何走上革命道路？')">为何走上革命道路？</button>
+      <button class="qbtn" onclick="sq('你对理想信念有何理解？')">谈谈理想信念</button>
+      <button class="qbtn" onclick="sq('你在岭师的求学经历是怎样的？')">在岭师的经历</button>
+      <button class="qbtn" onclick="sq('马克思主义如何影响了你？')">马克思主义的影响</button>
+      <button class="qbtn" onclick="sq('对当代岭师学生有什么寄语？')">对岭师学生的寄语</button>
+      <button class="qbtn" onclick="sq('你如何看待个人与历史的关系？')">个人与历史</button>
+    </div>
+
+    <div class="inputrow">
+      <textarea id="inp" placeholder="向谭平山先生提问……" rows="1"
+        onkeydown="hkey(event)" oninput="ar(this)"></textarea>
+      <button class="sendbtn" id="sbtn" onclick="send()" aria-label="发送">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="panel" id="p-info">
+    <div class="infopanel">
+      <div class="icard">
+        <div class="ictitle">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/></svg>
+          基本信息
+        </div>
+        <p>谭平山（1887–1956），原名谭鸣谦，字聘三，广东高明人。中国共产党早期领导人，国共合作重要推动者，大革命时期国民党左派代表人物。</p>
+        <div style="margin-top:10px">
+          <span class="tag">中共创始人之一</span>
+          <span class="tag">岭师红色校友</span>
+          <span class="tag">广东党组织奠基人</span>
+          <span class="tag">国共合作推动者</span>
+        </div>
+      </div>
+      <div class="icard">
+        <div class="ictitle">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          革命历程
+        </div>
+        <div class="tl"><div class="tlyear">1887</div><div class="tltext">出生于广东高明，家境贫寒，早年勤奋求学</div></div>
+        <div class="tl"><div class="tlyear">1907</div><div class="tltext">就读于两广优级师范学堂（岭南师范学院前身），接受新式教育</div></div>
+        <div class="tl"><div class="tlyear">1917</div><div class="tltext">赴日留学，接触马克思主义，思想发生根本转变</div></div>
+        <div class="tl"><div class="tlyear">1921</div><div class="tltext">参与创建中国共产党广东支部，出席党的早期重要会议</div></div>
+        <div class="tl"><div class="tlyear">1923</div><div class="tltext">以共产党员身份加入国民党，任国民党中央组织部长，积极推动第一次国共合作</div></div>
+        <div class="tl"><div class="tlyear">1927</div><div class="tltext">大革命失败后参与南昌起义，坚守革命立场</div></div>
+        <div class="tl"><div class="tlyear">1956</div><div class="tltext">在北京逝世，为中国革命事业奋斗终生</div></div>
+      </div>
+      <div class="icard">
+        <div class="ictitle">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          与岭师的渊源
+        </div>
+        <p>谭平山曾就读于两广优级师范学堂，即今岭南师范学院前身。这段求学经历奠定了他思想启蒙的基础，是岭师最重要的红色校友之一，其革命精神是岭师红色文化传承的重要组成部分。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-course">
+    <div class="infopanel">
+      <div class="icard">
+        <div class="ictitle">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          对应《马克思主义基本原理》知识点
+        </div>
+        <div class="kpblock"><div class="kptitle">第一章 · 世界的物质性及发展规律</div><div class="kpdesc">唯物史观——社会存在决定社会意识；谭平山以亲身实践体现物质条件对思想转变的根本作用</div></div>
+        <div class="kpblock"><div class="kptitle">第四章 · 人民群众是历史的创造者</div><div class="kpdesc">谭平山组织广东工农运动，体现了马克思主义群众史观的实践</div></div>
+        <div class="kpblock"><div class="kptitle">第五章 · 资本主义的本质及规律</div><div class="kpdesc">谭平山对半殖民地半封建中国的批判与反帝反封建革命实践</div></div>
+        <div class="kpblock"><div class="kptitle">第六章 · 社会主义的发展及其规律</div><div class="kpdesc">中国共产党早期建党历程与马克思主义中国化的起点</div></div>
+      </div>
+      <div class="icard">
+        <div class="ictitle">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          作业对应要求
+        </div>
+        <p>
+          <strong style="color:#6B1A1A">作品类型：</strong>数智新技艺（AIGC 应用）<br>
+          <strong style="color:#6B1A1A">实践主题：</strong>党史人物的理想信念对岭南师范学院大学生理想价值观的影响<br>
+          <strong style="color:#6B1A1A">选取人物：</strong>谭平山（岭师红色校友）<br>
+          <strong style="color:#6B1A1A">作品形式：</strong>AI 智能体对话，以第一人称还原历史人物理想信念，引导当代学生思考
+        </p>
+      </div>
+      <div class="icard">
+        <div class="ictitle">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          使用建议
+        </div>
+        <p>将与谭平山的对话截图作为小组调研素材，整合进实践报告，作为"以党史人物视角引发当代学生价值观思考"的论据。对话中涉及的马克思主义原理知识点可直接引用。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote">基于 DeepSeek AI · 《马克思主义基本原理》课程实践媒体作品 · 岭南师范学院</div>
+</div>
+
+<script>
+const SYS = '你现在扮演谭平山（1887-1956），广东高明人，中国共产党早期领导人，岭南师范学院（前身两广优级师范学堂）红色校友。\n\n【人物背景】\n- 1887年生于广东高明，家境贫寒，刻苦求学\n- 1907年就读两广优级师范学堂（今岭南师范学院前身）\n- 1917年赴日留学，接触马克思主义，思想发生根本转变\n- 1921年参与创建中国共产党广东支部\n- 1923年以共产党员身份加入国民党，任国民党中央组织部长，积极推动第一次国共合作\n- 1927年参与南昌起义\n- 1956年在北京逝世\n\n【性格与语言风格】\n- 儒雅、坚定、有书卷气，带些广东人说普通话的质朴感\n- 以第一人称"我"回答，语言真诚、深沉，有历史厚重感，但不说教\n- 偶尔引用马克思主义原理或历史事件阐释观点\n- 自然提到岭师求学经历、广东革命实践、对当代青年的期望\n- 有温度，有细节，让当代大学生感受到革命先驱的真实精神\n\n每次回答150-250字，有温度、有历史细节、有思想深度。';
+
+let hist = [];
+let busy = false;
+
+function sw(tab) {
+  ['chat','info','course'].forEach((t,i) => {
+    document.querySelectorAll('.tab')[i].classList.toggle('active', t===tab);
+    const p = document.getElementById('p-'+t);
+    p.classList.toggle('active', t===tab);
+    p.style.display = t===tab ? 'flex' : 'none';
+  });
+}
+
+function ar(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,100)+'px'; }
+function hkey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} }
+function sq(t) { if(busy)return; document.getElementById('inp').value=t; send(); }
+
+function gt() {
+  const d=new Date();
+  return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+}
+
+function setbusy(v) {
+  busy=v;
+  document.getElementById('sbtn').disabled=v;
+  document.querySelectorAll('.qbtn').forEach(b=>b.disabled=v);
+}
+
+function addmsg(role, text) {
+  const box=document.getElementById('msgs');
+  const w=document.createElement('div'); w.className='msg '+role;
+  const av=document.createElement('div'); av.className='mav '+role;
+  av.textContent=role==='ai'?'谭':'我';
+  const inner=document.createElement('div');
+  const bub=document.createElement('div'); bub.className='mbubble';
+  bub.innerHTML=text.replace(/\n/g,'<br>');
+  const meta=document.createElement('div'); meta.className='mmeta';
+  meta.textContent=(role==='ai'?'谭平山':'你')+' · '+gt();
+  inner.appendChild(bub); inner.appendChild(meta);
+  w.appendChild(av); w.appendChild(inner);
+  box.appendChild(w); box.scrollTop=box.scrollHeight;
+  return bub;
+}
+
+function showtyping() {
+  const box=document.getElementById('msgs');
+  const w=document.createElement('div'); w.className='msg ai'; w.id='tyind';
+  w.innerHTML='<div class="mav ai">谭</div><div class="mbubble"><div class="typing"><span></span><span></span><span></span></div></div>';
+  box.appendChild(w); box.scrollTop=box.scrollHeight;
+}
+function rmtyping() { const t=document.getElementById('tyind'); if(t)t.remove(); }
+
+async function send() {
+  if(busy)return;
+  const inp=document.getElementById('inp');
+  const text=inp.value.trim(); if(!text)return;
+  inp.value=''; inp.style.height='auto';
+  setbusy(true);
+  addmsg('user',text);
+  hist.push({role:'user',content:text});
+  showtyping();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: [
+          {role:'system', content: SYS},
+          ...hist
+        ],
+        max_tokens: 600,
+        temperature: 0.85
+      })
+    });
+    rmtyping();
+    const data = await res.json();
+    const reply = data.choices?.[0]?.message?.content || '抱歉，请稍后再试。';
+    addmsg('ai', reply);
+    hist.push({role:'assistant',content:reply});
+  } catch(e) {
+    rmtyping();
+    addmsg('ai','连接出现问题，请稍后再试。');
+  }
+  setbusy(false);
+}
+
+document.querySelectorAll('.panel').forEach(p => {
+  if(!p.classList.contains('active')) p.style.display='none';
+});
+</script>
+</body>
+</html>
